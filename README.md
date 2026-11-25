@@ -2,11 +2,48 @@
 
 [![crates.io](https://img.shields.io/crates/v/atlas-dmg.svg)](https://crates.io/crates/atlas-dmg) [![docs.rs](https://img.shields.io/docsrs/atlas-dmg)](https://docs.rs/atlas-dmg) [![CI](https://github.com/05Narwhal/atlas-dmg/actions/workflows/ci.yml/badge.svg)](https://github.com/05Narwhal/atlas-dmg/actions/workflows/ci.yml) ![License](https://img.shields.io/crates/l/atlas-dmg.svg)
 
-Opens `.dmg` images (UDIF with a `koly` trailer) as a `BlockSource`, decoding zlib, bzip2, LZFSE, LZMA (xz) and ADC chunks on demand with bounded memory. The `plist` module is the bounded XML property list parser the image trailer needs, public because other readers of Apple formats use it too.
+**Open Apple `.dmg` disk images (UDIF) as a plain `BlockSource`.**
 
+A `.dmg` stores a disk in compressed chunks with a `koly` trailer. `atlas-dmg` presents the disk inside as a `BlockSource` and decodes chunks only when they are read, with bounded memory, so a large image does not have to be unpacked first.
+
+## Features
+
+- Chunks stored **raw or zero-filled**, or compressed with **zlib, bzip2, LZFSE, LZMA (xz) or ADC**.
 - Chunk tables are checked against the file before any chunk is decoded; a damaged table is an error, not a panic.
 - LZMA chunks use an in-house decoder with a bounded dictionary.
-- No `unsafe`. Every length, offset and count read from the disk is checked; damage is an error, not a panic.
+- A bounded XML **property list parser** (`plist`), public because the readers of other Apple formats use it too.
+
+## Quick start
+
+```rust,no_run
+use std::path::Path;
+
+use atlas_fs_core::io::block::BlockSource;
+
+let disk = atlas_dmg::udif::open(Path::new("installer.dmg"))?;
+println!("{} bytes of disk", disk.len());
+```
+
+The result is a `BlockSource`, so you can hand it to `atlas-partition` to find the partitions inside, and then to `atlas-hfsplus` or `atlas-apfs` to read a volume.
+
+## Modules
+
+- `udif`: `UdifSource` and `open`, the disk image reader.
+- `plist`: the bounded property list parser the image trailer needs.
+
+Builds on `atlas-hfsplus`.
+
+## Safety and robustness
+
+- **No `unsafe`.** The crate is `#![forbid(unsafe_code)]`.
+- **On-disk bytes are hostile.** Every length, offset and count read from a disk is validated before use. Damage is returned as an error, never a panic, an unchecked index or an unbounded loop.
+- **Lints enforce it.** Clippy's `indexing_slicing`, `arithmetic_side_effects`, `unwrap_used`, `expect_used` and `panic` lints are on for the library code.
+- **Read-only.** Nothing in this crate writes to a disk or image.
+- **Fuzzed.** A `cargo-fuzz` target in `fuzz/` runs the parser on arbitrary bytes.
+
+## Feature flags
+
+- `test-util`: exposes the synthetic test image builders and fuzz seed inputs this crate's own tests use, for tests of crates built on it. It is not part of the stable API.
 
 ## Install
 
@@ -15,7 +52,9 @@ Opens `.dmg` images (UDIF with a `koly` trailer) as a `BlockSource`, decoding zl
 atlas-dmg = "26.0.1-a"
 ```
 
-Minimum supported Rust version: 1.88.
+Versions follow `26.MAJOR.MINOR-STAGE`: the year, the major and minor version, and a stage letter (`a` alpha, `b` beta, `s` stable). Cargo treats a stage suffix as a pre-release, so name the version exactly as above.
+
+Minimum supported Rust version: 1.88 (edition 2024).
 
 ## Licence
 

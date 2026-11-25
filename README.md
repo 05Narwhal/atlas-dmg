@@ -12,7 +12,7 @@ Opens `.dmg` images (UDIF with a `koly` trailer) as a `BlockSource`, decoding zl
 
 ```toml
 [dependencies]
-atlas-dmg = "0.1"
+atlas-dmg = "26.0.1-a"
 ```
 
 Minimum supported Rust version: 1.88.

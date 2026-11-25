@@ -1,6 +1,6 @@
 [package]
 name = "atlas-dmg"
-version = "0.1.0"
+version = "26.0.1-a"
 edition = "2024"
 rust-version = "1.88"
 license = "MIT OR Apache-2.0"
@@ -17,8 +17,8 @@ authors = ["Julian A. Loy"]
 test-util = ["dep:lzma-rs", "dep:lzfse_rust"]
 
 [dependencies]
-atlas-fs-core = { version = "0.1", path = "../atlas-fs-core" }
-atlas-hfsplus = { version = "0.1", path = "../atlas-hfsplus" }
+atlas-fs-core = { version = "26.0.1-a", path = "../atlas-fs-core" }
+atlas-hfsplus = { version = "26.0.1-a", path = "../atlas-hfsplus" }
 # Property lists (XML).
 quick-xml = "0.41"
 base64 = "0.22"

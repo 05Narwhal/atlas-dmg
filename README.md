@@ -1,6 +1,6 @@
 # atlas-dmg
 
-<!-- badges -->[![crates.io](https://img.shields.io/crates/v/atlas-dmg.svg)](https://crates.io/crates/atlas-dmg) [![docs.rs](https://img.shields.io/docsrs/atlas-dmg)](https://docs.rs/atlas-dmg) [![CI](https://github.com/05Narwhal/atlas-dmg/actions/workflows/ci.yml/badge.svg)](https://github.com/05Narwhal/atlas-dmg/actions/workflows/ci.yml) ![License](https://img.shields.io/crates/l/atlas-dmg.svg)
+[![crates.io](https://img.shields.io/crates/v/atlas-dmg.svg)](https://crates.io/crates/atlas-dmg) [![docs.rs](https://img.shields.io/docsrs/atlas-dmg)](https://docs.rs/atlas-dmg) [![CI](https://github.com/05Narwhal/atlas-dmg/actions/workflows/ci.yml/badge.svg)](https://github.com/05Narwhal/atlas-dmg/actions/workflows/ci.yml) ![License](https://img.shields.io/crates/l/atlas-dmg.svg)
 
 Opens `.dmg` images (UDIF with a `koly` trailer) as a `BlockSource`, decoding zlib, bzip2, LZFSE, LZMA (xz) and ADC chunks on demand with bounded memory. The `plist` module is the bounded XML property list parser the image trailer needs, public because other readers of Apple formats use it too.
 

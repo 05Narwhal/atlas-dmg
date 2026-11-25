@@ -6,6 +6,7 @@ rust-version = "1.88"
 license = "MIT OR Apache-2.0"
 description = "Read Apple disk images (UDIF .dmg): zlib, bzip2, LZFSE, LZMA and ADC chunks, plus a bounded property list parser."
 repository = "https://github.com/05Narwhal/atlas-dmg"
+homepage = "https://julianloy.com"
 readme = "README.md"
 keywords = ["dmg", "udif", "disk-image", "macos", "parser"]
 categories = ["filesystem", "parser-implementations"]

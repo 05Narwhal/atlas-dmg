@@ -1,12 +1,12 @@
 [package]
 name = "atlas-dmg"
-version = "26.0.1-a"
+version = "26.0.2-a"
 edition = "2024"
 rust-version = "1.88"
 license = "MIT OR Apache-2.0"
 description = "Read Apple disk images (UDIF .dmg): zlib, bzip2, LZFSE, LZMA and ADC chunks, plus a bounded property list parser."
 repository = "https://github.com/05Narwhal/atlas-dmg"
-homepage = "https://julianloy.com"
+documentation = "https://disk-atlas.julianloy.com/docs"
 readme = "README.md"
 keywords = ["dmg", "udif", "disk-image", "macos", "parser"]
 categories = ["filesystem", "parser-implementations"]
@@ -17,8 +17,8 @@ authors = ["Julian A. Loy"]
 test-util = ["dep:lzma-rs", "dep:lzfse_rust"]
 
 [dependencies]
-atlas-fs-core = { version = "26.0.1-a", path = "../atlas-fs-core" }
-atlas-hfsplus = { version = "26.0.1-a", path = "../atlas-hfsplus" }
+atlas-fs-core = { version = "26.0.2-a", path = "../atlas-fs-core" }
+atlas-hfsplus = { version = "26.0.2-a", path = "../atlas-hfsplus" }
 # Property lists (XML).
 quick-xml = "0.41"
 base64 = "0.22"

@@ -17,8 +17,8 @@ authors = ["Julian A. Loy"]
 test-util = ["dep:lzma-rs", "dep:lzfse_rust"]
 
 [dependencies]
-atlas-fs-core = { version = "0.1", path = "X:/Documents/Coding/Projects/Libraries/Rust/atlas-fs-core" }
-atlas-hfsplus = { version = "0.1", path = "X:/Documents/Coding/Projects/Libraries/Rust/atlas-hfsplus" }
+atlas-fs-core = { version = "0.1", path = "../atlas-fs-core" }
+atlas-hfsplus = { version = "0.1", path = "../atlas-hfsplus" }
 # Property lists (XML).
 quick-xml = "0.41"
 base64 = "0.22"
